@@ -1,0 +1,19 @@
+
+task rel() << {
+  execCmd("java.exe -jar ${DIRINDEX} . build.gradle")
+}
+
+
+
+def execCmd(command) {
+  def proc = command.execute();
+  def stdout = new StringBuffer();
+  def stderr = new StringBuffer();
+  proc.consumeProcessOutputStream(stdout);
+  proc.consumeProcessErrorStream(stderr);
+  if (proc.waitFor() != 0) {
+    println stderr.toString();
+    throw new RuntimeException("Failed command: " + command);
+  }
+  stdout.toString()
+}
