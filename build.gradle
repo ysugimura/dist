@@ -1,7 +1,7 @@
 
-task rel() << {
+task rel() { doLast {
   execCmd("java.exe -jar ${DIRINDEX} . build.gradle")
-}
+}}
 
 
 
